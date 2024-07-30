@@ -44,7 +44,7 @@ class TransactionController extends Controller
         // get data kasir
         $kasirs = Kasir::get(['id', 'name']);
         // get data product
-        $products = Product::get(['id', 'name', 'price']);
+        $products = Product::get(['id', 'name', 'price', 'stok']);
 
         // tampilkan form add data
         return view('transactions.create', compact('kasirs', 'products'));
@@ -93,7 +93,7 @@ class TransactionController extends Controller
         // get data kasir
         $kasirs = Kasir::get(['id', 'name']);
         // get data product
-        $products = Product::get(['id', 'name', 'price']);
+        $products = Product::get(['id', 'name', 'price', 'stok']);
 
         // tampilkan form edit data
         return view('transactions.edit', compact('transaction', 'kasirs', 'products'));

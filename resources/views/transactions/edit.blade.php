@@ -53,7 +53,8 @@
                                     <option
                                         {{ old('product', $transaction->product_id) == $product->id ? 'selected' : '' }}
                                         value="{{ $product->id }}"
-                                        data-price="{{ number_format($product->price, 0, '', '.') }}">
+                                        data-price="{{ number_format($product->price, 0, '', '.') }}"
+                                        data-stok="{{ $product->stok }}">
                                         {{ $product->name }}
                                     </option>
                                 @endforeach
@@ -77,6 +78,21 @@
                             </div>
                             {{-- pesan error untuk price --}}
                             @error('price')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Stok Tersedia <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="text" id="stok" name="stok"
+                                    class="form-control mask-number @error('stok') is-invalid @enderror"
+                                    value="{{ old('stok', $transaction->product->stok) }}" readonly>
+                            </div>
+                            {{-- pesan error untuk stok --}}
+                            @error('stok')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>
@@ -134,8 +150,10 @@
             $('#product').change(function() {
                 // mengambil data dari selected option
                 var price = $(this).children('option:selected').data('price');
+                var stok = $(this).children('option:selected').data('stok');
                 // tampilkan data
                 $('#price').val(price);
+                $('#stok').val(stok);
                 // reset data
                 $('#qty').val('');
                 $('#total').val(0);
