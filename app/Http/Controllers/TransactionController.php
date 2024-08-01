@@ -6,6 +6,7 @@ use App\Models\Kasir;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -18,7 +19,7 @@ class TransactionController extends Controller
 
         if ($search) {
             // menampilkan pencarian data
-            $transactions = Transaction::select('id', 'date', 'kasir_id', 'product_id', 'qty', 'total')->with('kasir:id,name', 'product:id,name,price')
+            $transactions = Transaction::select('id', 'date', 'kasir_name', 'product_id', 'qty', 'total')->with('kasir:id,name', 'product:id,name,price')
                 ->whereAny(['date', 'qty', 'total'], 'LIKE', '%' . $search . '%')
                 ->orWhereHas('kasir', function ($query) use ($search) {
                     $query->where('name', 'LIKE', '%' . $search . '%');
@@ -30,7 +31,7 @@ class TransactionController extends Controller
                 ->withQueryString();
         } else {
             // menampilkan semua data
-            $transactions = Transaction::select('id', 'date', 'kasir_id', 'product_id', 'qty', 'total')->with('kasir:id,name', 'product:id,name,price')
+            $transactions = Transaction::select('id', 'date', 'kasir_name', 'product_id', 'qty', 'total')->with('kasir:id,name', 'product:id,name,price')
                 ->latest()
                 ->paginate($pagination);
         }
@@ -41,13 +42,11 @@ class TransactionController extends Controller
 
     public function create()
     {
-        // get data kasir
-        $kasirs = Kasir::get(['id', 'name']);
         // get data product
-        $products = Product::get(['id', 'name', 'price', 'stok']);
+        $products = Product::get(['id', 'name', 'price', 'stok', 'expired']);
 
         // tampilkan form add data
-        return view('transactions.create', compact('kasirs', 'products'));
+        return view('transactions.create', compact('products'));
     }
 
     public function store(Request $request)
@@ -55,7 +54,7 @@ class TransactionController extends Controller
         // validasi form
         $request->validate([
             'date'     => 'required',
-            'kasir' => 'required|exists:kasirs,id',
+            'kasir_name' => 'required',
             'product'  => 'required|exists:products,id',
             'qty'      => 'required',
             'total'    => 'required'
@@ -72,7 +71,7 @@ class TransactionController extends Controller
         // create data
         Transaction::create([
             'date'        => $request->date,
-            'kasir_id' => $request->kasir,
+            'kasir_name'  => Auth::user()->name,
             'product_id'  => $request->product,
             'qty'         => $request->qty,
             'total'       => str_replace('.', '', $request->total)
@@ -90,13 +89,11 @@ class TransactionController extends Controller
     {
         // get data transaction by ID
         $transaction = Transaction::findOrFail($id);
-        // get data kasir
-        $kasirs = Kasir::get(['id', 'name']);
         // get data product
         $products = Product::get(['id', 'name', 'price', 'stok']);
 
         // tampilkan form edit data
-        return view('transactions.edit', compact('transaction', 'kasirs', 'products'));
+        return view('transactions.edit', compact('transaction', 'products'));
     }
 
     public function update(Request $request, $id)
@@ -104,7 +101,7 @@ class TransactionController extends Controller
         // validasi form
         $request->validate([
             'date'     => 'required',
-            'kasir' => 'required|exists:kasirs,id',
+            'kasir_name' => 'required',
             'product'  => 'required|exists:products,id',
             'qty'      => 'required',
             'total'    => 'required'
@@ -133,7 +130,7 @@ class TransactionController extends Controller
         // update data
         $transaction->update([
             'date'        => $request->date,
-            'kasir_id' => $request->kasir,
+            'kasir_name' => Auth::user()->name,
             'product_id'  => $request->product,
             'qty'         => $newQty,
             'total'       => str_replace('.', '', $request->total)

@@ -27,7 +27,7 @@ class ReportController extends Controller
         $endDate   = $request->end_date;
 
         // menampilkan data berdasarkan filter
-        $transactions = Transaction::with('kasir:id,name', 'product:id,name,price')
+        $transactions = Transaction::with('product:id,name,price')
             ->whereBetween('date', [$startDate, $endDate])
             ->oldest()
             ->get();
@@ -39,13 +39,16 @@ class ReportController extends Controller
     public function print($startDate, $endDate)
     {
         // menampilkan data berdasarkan filter
-        $transactions = Transaction::with('kasir:id,name', 'product:id,name,price')
+        $transactions = Transaction::with('product:id,name,price')
             ->whereBetween('date', [$startDate, $endDate])
             ->oldest()
             ->get();
 
+        // Hitung total keseluruhan
+        $totalOverall = $transactions->sum('total');
+
         // load view PDF
-        $pdf = Pdf::loadview('report.print', compact('transactions'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadview('report.print', compact('transactions', 'totalOverall'))->setPaper('a4', 'landscape');
         // tampilkan ke browser
         return $pdf->stream('Transaksi.pdf');
     }

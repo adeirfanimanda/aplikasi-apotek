@@ -60,7 +60,7 @@
                 <tr>
                     <td width="30" align="center">{{ $no++ }}</td>
                     <td width="100">{{ \Carbon\Carbon::parse($transaction->date)->translatedFormat('d F Y') }}</td>
-                    <td width="130">{{ $transaction->kasir->name }}</td>
+                    <td width="130">{{ $transaction->kasir_name }}</td>
                     <td width="200">{{ $transaction->product->name }}</td>
                     <td width="70" align="right">
                         {{ 'Rp' . number_format($transaction->product->price, 0, '', '.') }}</td>
@@ -76,6 +76,13 @@
         </tbody>
     </table>
 
+    {{-- Total Keseluruhan --}}
+    @if ($totalOverall > 0)
+        <div style="margin-top: 10px; text-align: right;">
+            <strong>Total Keseluruhan: {{ 'Rp' . number_format($totalOverall, 0, '', '.') }}</strong>
+        </div>
+    @endif
+
     @php
         use Carbon\Carbon;
 
@@ -86,7 +93,7 @@
         $date = Carbon::now('Asia/Jakarta');
     @endphp
 
-    <div style="margin-top: 25px; text-align: right">
+    <div style="margin-top: 50px; text-align: right">
         Indramayu, {{ $date->translatedFormat('d F Y') }}
     </div>
 </body>

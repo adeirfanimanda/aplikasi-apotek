@@ -45,7 +45,7 @@
                             <td width="100">
                                 {{ \Carbon\Carbon::parse($transaction->date)->translatedFormat('d F Y') }}
                             </td>
-                            <td width="130">{{ $transaction->kasir->name }}</td>
+                            <td width="130">{{ $transaction->kasir_name }}</td>
                             <td width="170">{{ $transaction->product->name }}</td>
                             <td width="70" class="text-end">
                                 {{ 'Rp' . number_format($transaction->product->price, 0, '', '.') }}</td>

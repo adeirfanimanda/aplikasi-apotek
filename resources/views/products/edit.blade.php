@@ -135,19 +135,6 @@
                             </div>
                         @enderror
                     </div>
-
-                    <div class="mb-3 pe-xl-3">
-                        <label class="form-label">Keterangan</label>
-                        <textarea name="description" rows="5" class="form-control @error('description') is-invalid @enderror"
-                            autocomplete="off">{{ old('description', $product->description) }}
-                        </textarea>
-                        {{-- pesan error untuk description --}}
-                        @error('description')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
                 </div>
 
                 <div class="col-lg-5">
@@ -170,13 +157,11 @@
                 </div>
             </div>
 
-            <div class="pt-4 pb-2 mt-5 border-top">
-                <div class="d-grid gap-2 d-sm-flex justify-content-md-start pt-1">
-                    {{-- button update data --}}
-                    <button type="submit" class="btn btn-primary py-2 px-4">Update</button>
-                    {{-- button kembali ke halaman index --}}
-                    <a href="{{ route('products.index') }}" class="btn btn-danger py-2 px-4">Batal</a>
-                </div>
+            <div class="d-grid gap-2 d-sm-flex justify-content-md-start pt-1">
+                {{-- button update data --}}
+                <button type="submit" class="btn btn-primary py-2 px-4">Update</button>
+                {{-- button kembali ke halaman index --}}
+                <a href="{{ route('products.index') }}" class="btn btn-danger py-2 px-4">Batal</a>
             </div>
         </form>
     </div>

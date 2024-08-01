@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Kasir;
 use App\Models\Product;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -17,7 +17,7 @@ class DashboardController extends Controller
         // menampilkan jumlah data product
         $totalProduct = Product::count();
         // menampilkan jumlah data kasir
-        $totalKasir = Kasir::count();
+        $totalUser = User::count();
         // menampilkan jumlah data transaction
         $totalTransaction = Transaction::count();
 
@@ -29,6 +29,6 @@ class DashboardController extends Controller
             ->get();
 
         // tampilkan data ke view
-        return view('dashboard.index', compact('totalCategory', 'totalProduct', 'totalKasir', 'totalTransaction', 'transactions'));
+        return view('admin.dashboard.index', compact('totalCategory', 'totalProduct', 'totalUser', 'totalTransaction', 'transactions'));
     }
 }

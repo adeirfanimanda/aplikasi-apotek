@@ -3,7 +3,22 @@
     <x-page-title>Dashboard</x-page-title>
 
     <div class="row mb-3">
-        {{-- menampilkan informasi jumlah data Category --}}
+        {{-- menampilkan informasi jumlah data Pengguna --}}
+        <div class="col-lg-6 col-xl-3">
+            <div class="bg-white rounded-2 shadow-sm p-4 p-lg-4-2 mb-4">
+                <div class="d-flex align-items-center justify-content-start">
+                    <div class="text-muted me-4">
+                        <i class="ti ti-users fs-1 bg-warning text-white rounded-2 p-2"></i>
+                    </div>
+                    <div>
+                        <p class="text-muted mb-1">Pengguna</p>
+                        {{-- tampilkan data --}}
+                        <h5 class="fw-bold mb-0">{{ $totalUser }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- menampilkan informasi jumlah data Kategori --}}
         <div class="col-lg-6 col-xl-3">
             <div class="bg-white rounded-2 shadow-sm p-4 mb-4">
                 <div class="d-flex align-items-center justify-content-start">
@@ -33,21 +48,6 @@
                 </div>
             </div>
         </div>
-        {{-- menampilkan informasi jumlah data Kasir --}}
-        <div class="col-lg-6 col-xl-3">
-            <div class="bg-white rounded-2 shadow-sm p-4 p-lg-4-2 mb-4">
-                <div class="d-flex align-items-center justify-content-start">
-                    <div class="text-muted me-4">
-                        <i class="ti ti-users fs-1 bg-warning text-white rounded-2 p-2"></i>
-                    </div>
-                    <div>
-                        <p class="text-muted mb-1">Kasir</p>
-                        {{-- tampilkan data --}}
-                        <h5 class="fw-bold mb-0">{{ $totalKasir }}</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
         {{-- menampilkan informasi jumlah data Transaction --}}
         <div class="col-lg-6 col-xl-3">
             <div class="bg-white rounded-2 shadow-sm p-4 p-lg-4-2 mb-4">
@@ -73,7 +73,7 @@
             5 Obat Terlaris
         </h6>
 
-        <hr class="mb-4">
+        <br>
 
         {{-- tabel tampil data --}}
         <div class="table-responsive">

@@ -8,7 +8,7 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="https://pustakakoding.com/" class="text-breadcrumb text-decoration-none">
+                    <a href="{{ route('dashboard') }}" class="text-breadcrumb text-decoration-none">
                         <i class="ti ti-home fs-6"></i>
                     </a>
                 </li>

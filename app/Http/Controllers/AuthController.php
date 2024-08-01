@@ -23,7 +23,7 @@ class AuthController extends Controller
             if ($roles === 'admin') {
                 return redirect()->intended('dashboard');
             } elseif ($roles === 'kasir') {
-                return redirect()->intended('transactions');
+                return redirect()->intended('kasir/products');
             }
         }
 

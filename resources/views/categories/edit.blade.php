@@ -8,7 +8,7 @@
             @csrf
             @method('PUT')
             <div class="row">
-                <div class="col-lg-6">
+                <div class="mb-3">
                     <label class="form-label">Nama <span class="text-danger">*</span></label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                         value="{{ old('name', $category->name) }}" autocomplete="off">
@@ -21,13 +21,11 @@
                 </div>
             </div>
 
-            <div class="pt-4 pb-2 mt-5 border-top">
-                <div class="d-grid gap-2 d-sm-flex justify-content-md-start pt-1">
-                    {{-- button update data --}}
-                    <button type="submit" class="btn btn-primary py-2 px-4">Update</button>
-                    {{-- button kembali ke halaman index --}}
-                    <a href="{{ route('categories.index') }}" class="btn btn-danger py-2 px-4">Batal</a>
-                </div>
+            <div class="d-grid gap-2 d-sm-flex justify-content-md-start pt-1">
+                {{-- button update data --}}
+                <button type="submit" class="btn btn-primary py-2 px-4">Update</button>
+                {{-- button kembali ke halaman index --}}
+                <a href="{{ route('categories.index') }}" class="btn btn-danger py-2 px-4">Batal</a>
             </div>
         </form>
     </div>

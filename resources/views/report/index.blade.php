@@ -35,13 +35,13 @@
                 </div>
             </div>
 
-            <div class="pt-4 pb-2 mt-5 border-top">
-                <div class="d-grid gap-3 d-sm-flex justify-content-md-start pt-1">
-                    {{-- button tampil data laporan --}}
-                    <button type="submit" class="btn btn-primary py-2 px-4">
-                        Show<i class="ti ti-chevron-right align-middle ms-2"></i>
-                    </button>
-                </div>
+            <br>
+
+            <div class="d-grid gap-3 d-sm-flex justify-content-md-start pt-1">
+                {{-- button tampil data laporan --}}
+                <button type="submit" class="btn btn-primary py-2 px-4">
+                    Show<i class="ti ti-chevron-right align-middle ms-2"></i>
+                </button>
             </div>
         </form>
     </div>
@@ -92,7 +92,7 @@
                                 <td width="100">
                                     {{ \Carbon\Carbon::parse($transaction->date)->translatedFormat('d F Y') }}
                                 </td>
-                                <td width="130">{{ $transaction->kasir->name }}</td>
+                                <td width="130">{{ $transaction->kasir_name }}</td>
                                 <td width="170">{{ $transaction->product->name }}</td>
                                 <td width="70" class="text-end">
                                     {{ 'Rp' . number_format($transaction->product->price, 0, '', '.') }}</td>
