@@ -3,10 +3,8 @@
     <div class="container">
         {{-- Navbar Brand --}}
         <a class="d-inline navbar-brand text-white" href="/">
-            {{-- logo --}}
             <img src="{{ asset('images/logo-dashboard.png') }}" alt="Logo" width="32"
                 class="align-text-bottom me-2">
-            {{-- title --}}
             <span class="fs-4 text-uppercase">Apotek Rahmayani</span>
         </a>
 
@@ -32,6 +30,11 @@
                         </x-navbar-link>
                     </li>
                     <li class="nav-item">
+                        <x-navbar-link href="{{ route('admin.pengguna.index') }}" :active="request()->routeIs('admin.pengguna.*')">
+                            <i class="ti ti-users align-text-top me-1"></i>Data Pengguna
+                        </x-navbar-link>
+                    </li>
+                    <li class="nav-item">
                         <x-navbar-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
                             <i class="ti ti-category align-text-top me-1"></i>Data Kategori
                         </x-navbar-link>
@@ -41,9 +44,11 @@
                             <i class="ti ti-copy align-text-top me-1"></i>Data Obat
                         </x-navbar-link>
                     </li>
+                @endif
+                @if (Auth::user()->roles === 'kasir')
                     <li class="nav-item">
-                        <x-navbar-link href="{{ route('kasirs.index') }}" :active="request()->routeIs('kasirs.*')">
-                            <i class="ti ti-users align-text-top me-1"></i>Data Kasir
+                        <x-navbar-link href="{{ route('kasir.products.index') }}" :active="request()->routeIs('kasir.products.index')">
+                            <i class="ti ti-copy align-text-top me-1"></i>Data Obat
                         </x-navbar-link>
                     </li>
                 @endif

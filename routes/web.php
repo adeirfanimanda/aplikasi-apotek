@@ -6,8 +6,9 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KasirController;
+use App\Http\Controllers\KasirProductController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -27,6 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::middleware('roles:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        Route::prefix('admin/pengguna')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('admin.pengguna.index');
+            Route::get('/create', [UserController::class, 'create'])->name('admin.pengguna.create');
+            Route::post('/', [UserController::class, 'store'])->name('admin.pengguna.store');
+            Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.pengguna.edit');
+            Route::put('/{id}', [UserController::class, 'update'])->name('admin.pengguna.update');
+            Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.pengguna.destroy');
+        });
+
         Route::prefix('categories')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
             Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -45,31 +55,11 @@ Route::middleware('auth')->group(function () {
             Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
             Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
         });
+    });
 
-        Route::prefix('kasirs')->group(function () {
-            Route::get('/', [KasirController::class, 'index'])->name('kasirs.index');
-            Route::get('/create', [KasirController::class, 'create'])->name('kasirs.create');
-            Route::post('/', [KasirController::class, 'store'])->name('kasirs.store');
-            Route::get('/{id}/edit', [KasirController::class, 'edit'])->name('kasirs.edit');
-            Route::put('/{id}', [KasirController::class, 'update'])->name('kasirs.update');
-            Route::delete('/{id}', [KasirController::class, 'destroy'])->name('kasirs.destroy');
-        });
-
-        Route::prefix('transactions')->group(function () {
-            Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
-            Route::get('/create', [TransactionController::class, 'create'])->name('transactions.create');
-            Route::post('/', [TransactionController::class, 'store'])->name('transactions.store');
-            Route::get('/{id}', [TransactionController::class, 'show'])->name('transactions.show');
-            Route::get('/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
-            Route::put('/{id}', [TransactionController::class, 'update'])->name('transactions.update');
-            Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
-        });
-
-        Route::prefix('report')->group(function () {
-            Route::get('/', [ReportController::class, 'index'])->name('report.index');
-            Route::get('/filter', [ReportController::class, 'filter'])->name('report.filter');
-            Route::get('/print/{start_date}/{end_date}', [ReportController::class, 'print'])->name('report.print');
-        });
+    // Route untuk kasir
+    Route::middleware('roles:kasir')->group(function () {
+        Route::get('kasir/products', [KasirProductController::class, 'index'])->name('kasir.products.index');
     });
 
     Route::prefix('transactions')->group(function () {
