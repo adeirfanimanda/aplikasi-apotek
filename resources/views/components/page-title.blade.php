@@ -8,9 +8,15 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('dashboard') }}" class="text-breadcrumb text-decoration-none">
-                        <i class="ti ti-home fs-6"></i>
-                    </a>
+                    @if (Auth::user()->roles === 'kasir')
+                        <a href="{{ route('kasir.products.index') }}" class="text-breadcrumb text-decoration-none">
+                            <i class="ti ti-home fs-6"></i>
+                        </a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="text-breadcrumb text-decoration-none">
+                            <i class="ti ti-home fs-6"></i>
+                        </a>
+                    @endif
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
                     {{ $slot }}
