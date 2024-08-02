@@ -154,7 +154,7 @@
             // menghitung total
             $('#qty').keyup(function() {
                 // mengambil data dari form entri
-                var price = $('#price').val().replace('.', '');
+                var price = $('#price').val().replace(/\./g, '');
                 var qty = $('#qty').val();
 
                 // mengecek input data
@@ -200,7 +200,7 @@
                 }
 
                 // format number
-                var result = new Intl.NumberFormat().format(total);
+                var result = total.toLocaleString('id-ID');
                 // tampilkan total
                 $('#total').val(result);
             });
