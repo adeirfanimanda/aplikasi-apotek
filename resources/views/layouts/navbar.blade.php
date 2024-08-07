@@ -36,7 +36,7 @@
                     </li>
                     <li class="nav-item">
                         <x-navbar-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
-                            <i class="ti ti-category align-text-top me-1"></i>Data Kategori
+                            <i class="ti ti-category align-text-top me-1"></i>Data Bentuk Kesediaan
                         </x-navbar-link>
                     </li>
                     <li class="nav-item">

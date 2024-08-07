@@ -33,9 +33,9 @@
                     <th class="text-center">NAMA</th>
                     <th class="text-center">GAMBAR</th>
                     <th class="text-center">HARGA</th>
-                    <th class="text-center">KATEGORI</th>
+                    <th class="text-center">BENTUK KESEDIAAN</th>
                     <th class="text-center">STOK</th>
-                    <th class="text-center">SATUAN</th>
+                    <th class="text-center">GOLONGAN</th>
                     <th class="text-center">TANGGAL MASUK</th>
                     <th class="text-center">KADALUARSA</th>
                     <th class="text-center">KETERANGAN</th>
@@ -54,7 +54,7 @@
                             </td>
                             <td class="text-end">{{ 'Rp' . number_format($product->price, 0, '', '.') }}
                             </td>
-                            <td>{{ $product->category->name }}</td>
+                            <td width="1">{{ $product->category->name }}</td>
                             <td class="text-center">{{ $product->stok }}</td>
                             <td>{{ $product->satuan }}</td>
                             <td>

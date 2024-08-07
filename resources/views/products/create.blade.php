@@ -50,11 +50,11 @@
                     </div>
 
                     <div class="mb-3 pe-xl-3">
-                        <label class="form-label">Kategori <span class="text-danger">*</span></label>
+                        <label class="form-label">Bentuk Kesediaan <span class="text-danger">*</span></label>
                         <select name="category"
                             class="form-select select2-single @error('category') is-invalid @enderror"
                             autocomplete="off">
-                            <option selected disabled value="">- Pilih kategori -</option>
+                            <option selected disabled value="">- Pilih bentuk kesediaan -</option>
                             @foreach ($categories as $category)
                                 <option {{ old('category') == $category->id ? 'selected' : '' }}
                                     value="{{ $category->id }}">{{ $category->name }}</option>
@@ -81,15 +81,20 @@
                     </div>
 
                     <div class="mb-3 pe-xl-3">
-                        <label class="form-label">Satuan <span class="text-danger">*</span></label>
+                        <label class="form-label">Golongan <span class="text-danger">*</span></label>
                         <select name="satuan" class="form-select @error('satuan') is-invalid @enderror"
                             autocomplete="off">
-                            <option selected disabled value="">- Pilih satuan -</option>
-                            <option value="Botol" {{ old('satuan') == 'Botol' ? 'selected' : '' }}>Botol</option>
-                            <option value="Bks" {{ old('satuan') == 'Bks' ? 'selected' : '' }}>Bks</option>
-                            <option value="Box" {{ old('satuan') == 'Box' ? 'selected' : '' }}>Box</option>
-                            <option value="Dus" {{ old('satuan') == 'Dus' ? 'selected' : '' }}>Dus</option>
-                            <option value="Kapsul" {{ old('satuan') == 'Kapsul' ? 'selected' : '' }}>Kapsul</option>
+                            <option selected disabled value="">- Pilih golongan -</option>
+                            <option value="Tablet" {{ old('satuan') == 'Tablet' ? 'selected' : '' }}>Tablet</option>
+                            <option value="Strip" {{ old('satuan') == 'Strip' ? 'selected' : '' }}>Strip</option>
+                            <option value="Sirup Botol" {{ old('satuan') == 'Sirup Botol' ? 'selected' : '' }}>Sirup
+                                Botol</option>
+                            <option value="Salep Tube" {{ old('satuan') == 'Salep Tube' ? 'selected' : '' }}>Salep Tube
+                            </option>
+                            <option value="Tetes Mata Botol"
+                                {{ old('satuan') == 'Tetes Mata Botol' ? 'selected' : '' }}>Tetes Mata Botol</option>
+                            <option value="Alat" {{ old('satuan') == 'Alat' ? 'selected' : '' }}>Alat</option>
+                            <option value="Pcs" {{ old('satuan') == 'Pcs' ? 'selected' : '' }}>Pcs</option>
                         </select>
                         {{-- pesan error untuk satuan --}}
                         @error('satuan')

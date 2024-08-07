@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- Page Title --}}
-    <x-page-title>Tambah Kategori</x-page-title>
+    <x-page-title>Tambah Bentuk Kesediaan</x-page-title>
 
     <div class="bg-white rounded-2 shadow-sm p-4 mb-5">
         {{-- form add data --}}

@@ -1,13 +1,13 @@
 <x-app-layout>
     {{-- Page Title --}}
-    <x-page-title>Data Kategori</x-page-title>
+    <x-page-title>Data Bentuk Kesediaan</x-page-title>
 
     <div class="bg-white rounded-2 shadow-sm p-4 mb-4">
         <div class="row">
             <div class="d-grid d-lg-block col-lg-5 col-xl-6 mb-4 mb-lg-0">
                 {{-- button form add data --}}
                 <a href="{{ route('categories.create') }}" class="btn btn-primary py-2 px-3">
-                    <i class="ti ti-plus me-2"></i> Tambah Kategori
+                    <i class="ti ti-plus me-2"></i> Tambah Bentuk Kesediaan
                 </a>
             </div>
             <div class="col-lg-7 col-xl-6">
@@ -15,7 +15,7 @@
                 <form action="{{ route('categories.index') }}" method="GET">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control form-search py-2"
-                            value="{{ request('search') }}" placeholder="Cari kategori..." autocomplete="off">
+                            value="{{ request('search') }}" placeholder="Cari bentuk kesediaan..." autocomplete="off">
                         <button class="btn btn-primary py-2" type="submit">Cari</button>
                     </div>
                 </form>
@@ -67,7 +67,7 @@
                                     <div class="modal-body">
                                         {{-- informasi data yang akan dihapus --}}
                                         <p class="mb-2">
-                                            Anda yakin ingin menghapus data kategori dengan nama <span
+                                            Anda yakin ingin menghapus data bentuk kesediaan dengan nama <span
                                                 class="fw-bold mb-2">{{ $category->name }}</span>?
                                         </p>
                                     </div>
